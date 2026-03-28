@@ -1,0 +1,524 @@
+/* ============================================
+   Lit(e)Lat - Red de Literatura Electrónica Latinoamericana
+   Based on the original GeneratePress theme from litelat.net
+   ============================================ */
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.7;
+  color: #333;
+  background: #f7f7f7;
+}
+
+a {
+  color: #1e73be;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #0d4a80;
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Header --- */
+.site-header {
+  background: #222;
+  color: #fff;
+  padding: 0;
+  border-bottom: 3px solid #1e73be;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.site-branding {
+  flex-shrink: 0;
+}
+
+.site-title-link {
+  text-decoration: none;
+}
+
+.site-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.site-title-link:hover .site-title {
+  color: #a0d0ff;
+}
+
+.site-description {
+  color: #aaa;
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+/* --- Navigation --- */
+.main-navigation ul {
+  list-style: none;
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.main-navigation li a {
+  display: block;
+  padding: 8px 16px;
+  color: #ddd;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.main-navigation li a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid #555;
+  color: #ddd;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+/* --- Content Area --- */
+.site-content {
+  padding: 30px 0;
+}
+
+.content-area {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* --- Post List (Home) --- */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.post-card {
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s;
+}
+
+.post-card:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.post-card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.post-card-content {
+  padding: 20px 25px;
+}
+
+.post-card .entry-title {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.post-card .entry-title a {
+  color: #222;
+}
+
+.post-card .entry-title a:hover {
+  color: #1e73be;
+  text-decoration: none;
+}
+
+.post-card .entry-meta {
+  font-size: 0.82rem;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.entry-summary {
+  color: #555;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* --- Single Post --- */
+.single-post {
+  background: #fff;
+  border-radius: 4px;
+  padding: 35px 40px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.entry-header {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.entry-header .entry-title {
+  font-size: 1.8rem;
+  line-height: 1.3;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.entry-meta {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.entry-meta a {
+  color: #888;
+}
+
+.entry-meta a:hover {
+  color: #1e73be;
+}
+
+.featured-image {
+  margin-bottom: 25px;
+}
+
+.featured-image img {
+  border-radius: 3px;
+  width: 100%;
+}
+
+/* --- Entry Content --- */
+.entry-content {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.entry-content p {
+  margin-bottom: 1.2em;
+}
+
+.entry-content h2 {
+  font-size: 1.4rem;
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+  color: #222;
+}
+
+.entry-content h3 {
+  font-size: 1.2rem;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #333;
+}
+
+.entry-content ul, .entry-content ol {
+  margin-bottom: 1.2em;
+  padding-left: 1.8em;
+}
+
+.entry-content li {
+  margin-bottom: 0.3em;
+}
+
+.entry-content blockquote {
+  border-left: 4px solid #1e73be;
+  padding: 10px 20px;
+  margin: 1.5em 0;
+  background: #f9f9f9;
+  font-style: italic;
+  color: #555;
+}
+
+.entry-content img {
+  border-radius: 3px;
+  margin: 1em 0;
+}
+
+.entry-content iframe {
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.entry-content figure {
+  margin: 1.5em 0;
+}
+
+.entry-content figcaption {
+  font-size: 0.85rem;
+  color: #888;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* --- Original Link --- */
+.original-link {
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  color: #888;
+}
+
+/* --- Post Navigation --- */
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+.nav-previous, .nav-next {
+  max-width: 45%;
+}
+
+.nav-next {
+  text-align: right;
+  margin-left: auto;
+}
+
+/* --- Page --- */
+.page {
+  background: #fff;
+  border-radius: 4px;
+  padding: 35px 40px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.page .entry-header {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.page .entry-title {
+  font-size: 1.8rem;
+  color: #222;
+}
+
+/* --- Archive --- */
+.archive-year {
+  font-size: 1.3rem;
+  color: #222;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #1e73be;
+}
+
+.archive-posts {
+  list-style: none;
+  padding: 0;
+}
+
+.archive-posts li {
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  gap: 15px;
+  align-items: baseline;
+}
+
+.archive-posts time {
+  font-size: 0.82rem;
+  color: #888;
+  font-family: monospace;
+  flex-shrink: 0;
+  width: 45px;
+}
+
+.archive-posts a {
+  color: #333;
+}
+
+.archive-posts a:hover {
+  color: #1e73be;
+}
+
+/* --- Pagination --- */
+.pagination {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 10px 25px;
+  background: #1e73be;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.pagination a:hover {
+  background: #155a96;
+  text-decoration: none;
+  color: #fff;
+}
+
+/* --- Footer --- */
+.site-footer {
+  background: #222;
+  color: #aaa;
+  padding: 30px 0;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.site-footer a {
+  color: #a0d0ff;
+}
+
+.footer-note {
+  margin-top: 5px;
+  font-size: 0.78rem;
+  color: #666;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .main-navigation {
+    display: none;
+    width: 100%;
+  }
+
+  .main-navigation.toggled {
+    display: block;
+  }
+
+  .main-navigation ul {
+    flex-direction: column;
+  }
+
+  .main-navigation li a {
+    padding: 10px 0;
+    border-top: 1px solid #333;
+  }
+
+  .single-post, .page {
+    padding: 20px;
+  }
+
+  .entry-header .entry-title {
+    font-size: 1.4rem;
+  }
+
+  .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-previous, .nav-next {
+    max-width: 100%;
+    text-align: left;
+  }
+}
+
+/* --- WordPress Content Compatibility --- */
+.wp-block-image,
+.wp-block-embed {
+  margin: 1.5em 0;
+}
+
+.aligncenter {
+  display: block;
+  margin: 1em auto;
+  text-align: center;
+}
+
+.alignleft {
+  float: left;
+  margin: 0 1.5em 1em 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0 0 1em 1.5em;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 1.5em 0;
+}
+
+.gallery-item {
+  flex: 1 1 200px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+}
+
+/* --- WP Caption --- */
+.wp-caption {
+  max-width: 100%;
+  margin: 1em 0;
+}
+
+.wp-caption-text {
+  font-size: 0.85rem;
+  color: #888;
+  text-align: center;
+  padding: 5px 0;
+}

@@ -1,0 +1,38 @@
+title: "Red de Literatura Electrónica Latinoamericana"
+description: "Lit(e)Lat - Red de Literatura Electrónica Latinoamericana"
+url: "https://leo-elo.github.io"
+baseurl: "/litelat"
+lang: es
+
+permalink: /:title/
+
+markdown: kramdown
+highlighter: rouge
+
+future: true
+
+defaults:
+  - scope:
+      path: "_posts"
+    values:
+      layout: post
+      lang: es
+  - scope:
+      path: "_pages"
+    values:
+      layout: page
+      lang: es
+
+include:
+  - _pages
+
+plugins:
+  - jekyll-seo-tag
+
+
+exclude:
+  - scripts/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor/

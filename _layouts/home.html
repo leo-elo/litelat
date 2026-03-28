@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<div class="content-area" id="primary">
+  <main id="main" class="site-main">
+    {{ content }}
+    <div class="post-list">
+      {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+      {% for post in sorted_posts limit: 20 %}
+      <article class="post-card">
+        {% if post.featured_image %}
+        <div class="post-card-image">
+          <a href="{{ post.url | relative_url }}">
+            <img src="{{ post.featured_image }}" alt="{{ post.title }}" loading="lazy">
+          </a>
+        </div>
+        {% endif %}
+        <div class="post-card-content">
+          <h2 class="entry-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h2>
+          <div class="entry-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%d de %B de %Y" }}
+            </time>
+            {% if post.author %} · {{ post.author }}{% endif %}
+          </div>
+          {% if post.excerpt %}
+          <div class="entry-summary">
+            {{ post.excerpt | strip_html | truncate: 200 }}
+          </div>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    {% if sorted_posts.size > 20 %}
+    <div class="pagination">
+      <a href="{{ '/archivo/' | relative_url }}">Ver todas las publicaciones →</a>
+    </div>
+    {% endif %}
+  </main>
+</div>

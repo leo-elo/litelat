@@ -1,0 +1,22 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <p>Lit(e)Lat — Red de Literatura Electrónica Latinoamericana</p>
+      <p class="footer-note">Sitio archivado desde <a href="https://litelat.net">litelat.net</a> · Reconstruido con Jekyll y GitHub Pages</p>
+    </div>
+  </div>
+</footer>
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    var toggle = document.querySelector('.menu-toggle');
+    var nav = document.querySelector('.main-navigation');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        nav.classList.toggle('toggled');
+        var expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', !expanded);
+      });
+    }
+  });
+</script>
