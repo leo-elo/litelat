@@ -76,6 +76,11 @@ img {
   letter-spacing: -0.5px;
 }
 
+.site-logo {
+  height: 50px;
+  width: auto;
+}
+
 .site-title-link:hover .site-title {
   color: #a0d0ff;
 }
