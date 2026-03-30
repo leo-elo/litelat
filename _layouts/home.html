@@ -1,21 +1,47 @@
 ---
 layout: default
 ---
+{% assign current_lang = page.lang | default: 'es' %}
+{% assign lang_posts = "" | split: "" %}
+{% for post in site.posts %}
+  {% assign post_lang = post.lang | default: 'es' %}
+  {% if post_lang == current_lang %}
+    {% assign lang_posts = lang_posts | push: post %}
+  {% endif %}
+{% endfor %}
+{% assign sorted_posts = lang_posts | sort: 'date' | reverse %}
+
+{% assign per_page = page.posts_per_page | default: 10 %}
+{% assign page_num = page.page_number | default: 1 %}
+{% assign skip = page_num | minus: 1 | times: per_page %}
+{% assign total_pages = page.total_pages | default: 8 %}
+
+{% if current_lang == 'pt' %}
+  {% assign label_recent = "Publicação mais recente" %}
+  {% assign label_permalink = "Link permanente →" %}
+  {% assign label_previous_posts = "Publicações anteriores" %}
+  {% assign label_page = "Publicações — Página" %}
+  {% assign label_newer = "← Mais recentes" %}
+  {% assign label_older = "Anteriores →" %}
+  {% assign lang_prefix = "/pt" %}
+{% else %}
+  {% assign label_recent = "Publicación más reciente" %}
+  {% assign label_permalink = "Enlace permanente →" %}
+  {% assign label_previous_posts = "Publicaciones anteriores" %}
+  {% assign label_page = "Publicaciones — Página" %}
+  {% assign label_newer = "← Más recientes" %}
+  {% assign label_older = "Anteriores →" %}
+  {% assign lang_prefix = "/es" %}
+{% endif %}
+
 <div class="content-area" id="primary">
   <main id="main" class="site-main">
     {{ content }}
 
-    {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
-    {% assign per_page = page.posts_per_page | default: 10 %}
-    {% assign page_num = page.page_number | default: 1 %}
-    {% assign skip = page_num | minus: 1 | times: per_page %}
-    {% assign total_pages = page.total_pages | default: 7 %}
-
     {% if page_num == 1 %}
-      {%- comment -%} Featured post: show the most recent post in its entirety {%- endcomment -%}
       {% assign featured = sorted_posts | first %}
       <article class="featured-post">
-        <div class="featured-label">Publicación más reciente</div>
+        <div class="featured-label">{{ label_recent }}</div>
         {% if featured.featured_image %}
         <div class="featured-post-image">
           <a href="{{ featured.url | relative_url }}">
@@ -31,21 +57,19 @@ layout: default
             {{ featured.date | date: "%d/%m/%Y" }}
           </time>
           {% if featured.author %} · {{ featured.author }}{% endif %}
-          {% if featured.categories.size > 0 %}
-            · {% for cat in featured.categories %}{{ cat }}{% unless forloop.last %}, {% endunless %}{% endfor %}
-          {% endif %}
         </div>
         <div class="featured-post-content entry-content">
           {{ featured.content }}
         </div>
         <div class="featured-post-link">
-          <a href="{{ featured.url | relative_url }}">Enlace permanente →</a>
+          <a href="{{ featured.url | relative_url }}">{{ label_permalink }}</a>
         </div>
       </article>
 
-      <h3 class="post-list-heading">Publicaciones anteriores</h3>
+      <h3 class="post-list-heading">{{ label_previous_posts }}</h3>
 
       <div class="post-list-compact">
+        {% assign shown = 0 %}
         {% for post in sorted_posts offset:1 limit:9 %}
         <a href="{{ post.url | relative_url }}" class="post-list-item">
           <div class="post-list-thumb">
@@ -64,8 +88,7 @@ layout: default
       </div>
 
     {% else %}
-      {%- comment -%} Pages 2+ : just the compact list {%- endcomment -%}
-      <h3 class="post-list-heading">Publicaciones — Página {{ page_num }}</h3>
+      <h3 class="post-list-heading">{{ label_page }} {{ page_num }}</h3>
 
       <div class="post-list-compact">
         {% for post in sorted_posts offset:skip limit:per_page %}
@@ -86,24 +109,23 @@ layout: default
       </div>
     {% endif %}
 
-    {%- comment -%} Pagination nav {%- endcomment -%}
-    <nav class="pagination" aria-label="Paginación">
+    <nav class="pagination" aria-label="{% if current_lang == 'pt' %}Paginação{% else %}Paginación{% endif %}">
       {% if page_num > 1 %}
         {% if page_num == 2 %}
-          <a href="{{ '/' | relative_url }}" class="pagination-link pagination-prev">← Más recientes</a>
+          <a href="{{ lang_prefix | append: '/' | relative_url }}" class="pagination-link pagination-prev">{{ label_newer }}</a>
         {% else %}
-          <a href="{{ '/page/' | append: page_num | minus: 1 | append: '/' | relative_url }}" class="pagination-link pagination-prev">← Más recientes</a>
+          <a href="{{ lang_prefix | append: '/page/' | append: page_num | minus: 1 | append: '/' | relative_url }}" class="pagination-link pagination-prev">{{ label_newer }}</a>
         {% endif %}
       {% else %}
-        <span class="pagination-link pagination-disabled">← Más recientes</span>
+        <span class="pagination-link pagination-disabled">{{ label_newer }}</span>
       {% endif %}
 
       <span class="pagination-info">{{ page_num }} / {{ total_pages }}</span>
 
       {% if page_num < total_pages %}
-        <a href="{{ '/page/' | append: page_num | plus: 1 | append: '/' | relative_url }}" class="pagination-link pagination-next">Anteriores →</a>
+        <a href="{{ lang_prefix | append: '/page/' | append: page_num | plus: 1 | append: '/' | relative_url }}" class="pagination-link pagination-next">{{ label_older }}</a>
       {% else %}
-        <span class="pagination-link pagination-disabled">Anteriores →</span>
+        <span class="pagination-link pagination-disabled">{{ label_older }}</span>
       {% endif %}
     </nav>
 

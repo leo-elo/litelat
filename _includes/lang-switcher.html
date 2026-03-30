@@ -1,0 +1,20 @@
+{% assign current_lang = page.lang | default: 'es' %}
+<div class="lang-switcher">
+  {% if current_lang == 'es' %}
+    <span class="lang-option active">ES</span>
+    <span class="lang-divider">|</span>
+    {% if page.translation %}
+      <a href="{{ page.translation | relative_url }}" class="lang-option">PT</a>
+    {% else %}
+      <a href="{{ '/pt/' | relative_url }}" class="lang-option">PT</a>
+    {% endif %}
+  {% else %}
+    {% if page.translation %}
+      <a href="{{ page.translation | relative_url }}" class="lang-option">ES</a>
+    {% else %}
+      <a href="{{ '/es/' | relative_url }}" class="lang-option">ES</a>
+    {% endif %}
+    <span class="lang-divider">|</span>
+    <span class="lang-option active">PT</span>
+  {% endif %}
+</div>

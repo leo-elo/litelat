@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+{% assign current_lang = page.lang | default: 'es' %}
 <div class="content-area" id="primary">
   <main id="main" class="site-main">
     <header class="page-header">
@@ -8,7 +9,14 @@ layout: default
     </header>
     {{ content }}
     <div class="archive-list">
-      {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+      {% assign lang_posts = "" | split: "" %}
+      {% for post in site.posts %}
+        {% assign post_lang = post.lang | default: 'es' %}
+        {% if post_lang == current_lang %}
+          {% assign lang_posts = lang_posts | push: post %}
+        {% endif %}
+      {% endfor %}
+      {% assign posts_by_year = lang_posts | group_by_exp: "post", "post.date | date: '%Y'" %}
       {% for year in posts_by_year %}
       <h2 class="archive-year">{{ year.name }}</h2>
       <ul class="archive-posts">

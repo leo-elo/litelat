@@ -1,23 +1,30 @@
+{% assign current_lang = page.lang | default: 'es' %}
 <header class="site-header">
   <div class="container header-inner">
     <div class="site-branding">
       <a href="{{ '/' | relative_url }}" class="site-title-link">
         <img src="{{ '/assets/images/uploads/2024/07/litelatlogo.png' | relative_url }}" alt="Lit(e)Lat" class="site-logo">
       </a>
-      <p class="site-description">Red de Literatura Electrónica Latinoamericana</p>
+      <p class="site-description">{% if current_lang == 'pt' %}Rede de Literatura Eletrônica Latino-Americana{% else %}Red de Literatura Electrónica Latinoamericana{% endif %}</p>
     </div>
     <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-      ☰ Menú
+      ☰ {% if current_lang == 'pt' %}Menu{% else %}Menú{% endif %}
     </button>
     <nav id="site-navigation" class="main-navigation">
       <ul id="primary-menu" class="menu">
-        <li><a href="{{ '/acerca-2/' | relative_url }}">Acerca</a></li>
-        <li><a href="{{ '/archivo/' | relative_url }}">Archivo</a></li>
-        <li><a href="{{ '/redes-sociales/' | relative_url }}">Redes Sociales</a></li>
-        <li><a href="{{ '/anuncie-su-evento-en-litelat/' | relative_url }}">Anuncios</a></li>
-        <li><a href="{{ '/membresia/' | relative_url }}">Membresía</a></li>
-        <li><a href="{{ '/miembros/' | relative_url }}">Miembros</a></li>
+        {% if current_lang == 'pt' %}
+          <li><a href="{{ '/pt/' | relative_url }}">Início</a></li>
+          <li><a href="{{ '/pt/sobre/' | relative_url }}">Sobre</a></li>
+          <li><a href="{{ '/pt/arquivo/' | relative_url }}">Arquivo</a></li>
+          <li><a href="{{ '/pt/membresia/' | relative_url }}">Associação</a></li>
+        {% else %}
+          <li><a href="{{ '/es/' | relative_url }}">Inicio</a></li>
+          <li><a href="{{ '/es/acerca/' | relative_url }}">Acerca</a></li>
+          <li><a href="{{ '/es/archivo/' | relative_url }}">Archivo</a></li>
+          <li><a href="{{ '/es/membresia/' | relative_url }}">Membresía</a></li>
+        {% endif %}
       </ul>
+      {% include lang-switcher.html %}
     </nav>
   </div>
 </header>
