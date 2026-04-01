@@ -1,7 +1,7 @@
 title: "Red de Literatura Electrónica Latinoamericana"
 description: "Lit(e)Lat - Red de Literatura Electrónica Latinoamericana"
-url: "https://leo-elo.github.io"
-baseurl: "/litelat"
+url: "https://litelat.net"
+baseurl: ""
 
 permalink: /:title/
 
