@@ -10,23 +10,25 @@
     <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
       ☰ {% if current_lang == 'pt' %}Menu{% else %}Menú{% endif %}
     </button>
-    <nav id="site-navigation" class="main-navigation">
-      <ul id="primary-menu" class="menu">
-        {% if current_lang == 'pt' %}
-          <li><a href="{{ '/pt/' | relative_url }}">Início</a></li>
-          <li><a href="{{ '/pt/sobre/' | relative_url }}">Sobre</a></li>
-          <li><a href="{{ '/pt/arquivo/' | relative_url }}">Arquivo</a></li>
-          <li><a href="{{ '/pt/membresia/' | relative_url }}">Associação</a></li>
-          <li><a href="https://antologia.litelat.net/">Antologia Lit(e)Lat</a></li>
-        {% else %}
-          <li><a href="{{ '/es/' | relative_url }}">Inicio</a></li>
-          <li><a href="{{ '/es/acerca/' | relative_url }}">Acerca</a></li>
-          <li><a href="{{ '/es/archivo/' | relative_url }}">Archivo</a></li>
-          <li><a href="{{ '/es/membresia/' | relative_url }}">Membresía</a></li>
-          <li><a href="https://antologia.litelat.net/">Antología Lit(e)Lat</a></li>
-        {% endif %}
-      </ul>
+    <div class="header-right">
+      <nav id="site-navigation" class="main-navigation">
+        <ul id="primary-menu" class="menu">
+          {% if current_lang == 'pt' %}
+            <li><a href="{{ '/pt/' | relative_url }}">Início</a></li>
+            <li><a href="{{ '/pt/sobre/' | relative_url }}">Sobre</a></li>
+            <li><a href="{{ '/pt/arquivo/' | relative_url }}">Arquivo</a></li>
+            <li><a href="{{ '/pt/membresia/' | relative_url }}">Associação</a></li>
+            <li><a href="https://antologia.litelat.net/">Antologia Lit(e)Lat</a></li>
+          {% else %}
+            <li><a href="{{ '/es/' | relative_url }}">Inicio</a></li>
+            <li><a href="{{ '/es/acerca/' | relative_url }}">Acerca</a></li>
+            <li><a href="{{ '/es/archivo/' | relative_url }}">Archivo</a></li>
+            <li><a href="{{ '/es/membresia/' | relative_url }}">Membresía</a></li>
+            <li><a href="https://antologia.litelat.net/">Antología Lit(e)Lat</a></li>
+          {% endif %}
+        </ul>
+      </nav>
       {% include lang-switcher.html %}
-    </nav>
+    </div>
   </div>
 </header>
