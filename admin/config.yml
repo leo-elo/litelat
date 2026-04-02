@@ -1,0 +1,129 @@
+backend:
+  name: github
+  repo: leo-elo/litelat
+  branch: gh-pages
+  base_url: https://oauth.litelat.net
+
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+i18n:
+  structure: multiple_folders
+  locales: [es, pt]
+  default_locale: es
+
+collections:
+  - name: "posts"
+    label: "Publicaciones / Publicações"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "html"
+    format: "frontmatter"
+    editor:
+      preview: false
+    i18n: true
+    sortable_fields: ["date", "title", "author"]
+    view_groups:
+      - label: "Año / Ano"
+        field: date
+        pattern: \d{4}
+    fields:
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "post"
+
+      - label: "Título / Título"
+        name: "title"
+        widget: "string"
+        i18n: true
+
+      - label: "Fecha / Data"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD HH:mm:ss"
+        i18n: duplicate
+
+      - label: "Autor(a)"
+        name: "author"
+        widget: "string"
+        required: false
+        i18n: duplicate
+
+      - label: "Imagen destacada / Imagem destacada"
+        name: "featured_image"
+        widget: "image"
+        required: false
+        i18n: duplicate
+
+      - label: "Contenido / Conteúdo"
+        name: "body"
+        widget: "markdown"
+        i18n: true
+
+  - name: "pages_es"
+    label: "Páginas (ES)"
+    folder: "_pages/es"
+    create: true
+    extension: "html"
+    format: "frontmatter"
+    editor:
+      preview: false
+    fields:
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "page"
+
+      - label: "Título"
+        name: "title"
+        widget: "string"
+
+      - label: "Permalink"
+        name: "permalink"
+        widget: "string"
+
+      - label: "Traducción (URL de la versión en PT)"
+        name: "translation"
+        widget: "string"
+        required: false
+
+      - label: "Contenido"
+        name: "body"
+        widget: "markdown"
+
+  - name: "pages_pt"
+    label: "Páginas (PT)"
+    folder: "_pages/pt"
+    create: true
+    extension: "html"
+    format: "frontmatter"
+    editor:
+      preview: false
+    fields:
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "page"
+
+      - label: "Título"
+        name: "title"
+        widget: "string"
+
+      - label: "Permalink"
+        name: "permalink"
+        widget: "string"
+
+      - label: "Tradução (URL da versão em ES)"
+        name: "translation"
+        widget: "string"
+        required: false
+
+      - label: "Conteúdo"
+        name: "body"
+        widget: "markdown"
